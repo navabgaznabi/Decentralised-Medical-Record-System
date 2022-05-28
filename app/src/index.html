@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Decentralized Medical Records System</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="js/bundle.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+      .panel-heading {
+        margin-bottom: 20px;
+      }
+      .navbar {
+        margin-bottom: 70px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 20px;">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"
+            >DMRS</a
+          >
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active">
+              <a href="./index.html">Login</a>
+            </li>
+            <li>
+              <a href="./register.html">Register</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="panel panel-default" style="border: none;">
+        <div class="seven">
+            <h1>
+                Decentralized Medical Records System
+            </h1>
+          </div>
+        <div>
+            <img
+              style="margin: 0px"
+              src="img\banner.jpg"
+              width="100%"
+              height="400px"
+            />
+          </div>
+        <div class="panel-body">
+          <div class="row">
+            <div
+              class="alert alert-warning col-sm-8 col-sm-offset-2 "
+              style="display: none; text-align: center;"
+            >
+              <strong>You are Not registered!<br></strong> Click
+              <a href="./register.html">here</a> to register.
+            </div>
+          </div>
+
+          <form class="form-horizontal" name="loginForm">
+            <div class="form-group"></div>
+          </form>
+          <div class="center" style="margin: 70px;">
+            <div class="btn-1" style="margin: 0px;">
+              <button onclick="login()"><span>Connect</span></button>
+           </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="flash-box">
+      <div class="application">
+        <div class="item-conten">
+          <img src="img\heart.jpg" alt="img" height="50px" width="50px
+          " >
+          <div class="item-app">REMOTE PATIENT MONITORING</div>
+        </div>
+        <div class="item-conten">
+          <img src="img\record.png" alt="img" height="50px" width="50px
+          " >
+          <div class="item-app">ELECTRONIC MEDICAL RECORDS</div>
+        </div>
+        <div class="item-conten">
+          <img src="img\sec.png" alt="img" height="50px" width="50px
+          " >
+          <div class="item-app">SECURITY AND SAFETY</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <div class="heading1">
+          <h2>MODERN PROBLEMS REQUIRE MODERN SOLUTIONS</h2>
+          <p>
+            Decentralized medical records system will change how we live and how we want other to live their lives.
+          </p>
+        </div>
+        <hr style="height: 1px; background-color: black;">
+    
+        <div class="content-box">
+          <img class="block-img" src="img\blockchain-1.png" width="400px" height="480px
+            " alt="">
+          <div class="bullets">
+            <ul>
+              <li>
+                <h3>
+                  CONSISTENT
+                </h3>
+               <p>
+                Smart contracts execute automatically which makes the whole system consistent </li>
+               </p>            
+               <li>
+                <h3>
+                  TEMPER-PROOF
+                </h3>
+               <p>
+                Look out for the state of the mind during therapy sessions or when you are not able to figure out the exact emotion.             </p>  
+               </li>
+              <li>
+                <h3>
+                  Fast
+                </h3>
+               <p>The mechanism is comparitively much faster than the traditional methods used in healthcare.
+               </p> 
+  
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="foot">
+      <p style="color: white;">Healthcare Record Dapp created by CPG-3</p>
+    </div>
+
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/web3.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      $(function () {
+        $("#includedContent").load("anim.html");
+      });
+
+      connect();
+      function login() {
+        $(".alert-warning").hide();
+
+        publicKey = web3.currentProvider.selectedAddress;
+        console.log(publicKey);
+        contractInstance.get_patient_list(function (error, result) {
+          if (!error) {
+            var PatientList = result;
+            for (var i = 0; i < PatientList.length; i++) {
+              if (publicKey.toLowerCase() == PatientList[i]) {
+                location.href = "./patient.html?key=" + publicKey;
+              }
+            }
+          } else {
+            console.log(error);
+            console.log("Invalid User!");
+            $(".alert-warning").show();
+          }
+        });
+
+        contractInstance.get_doctor_list(function (error, result) {
+          if (!error) {
+            var DoctorList = result;
+            for (var i = 0; i < DoctorList.length; i++) {
+              if (publicKey.toLowerCase() == DoctorList[i]) {
+                location.href = "./doctor.html?key=" + publicKey;
+              }
+            }
+          } else {
+            console.log(error);
+            $(".alert-warning").show();
+          }
+        });
+
+        console.log("Invalid User!");
+        $(".alert-warning").show();
+      }
+    </script>
+  </body>
+</html>
